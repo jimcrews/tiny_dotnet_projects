@@ -8,13 +8,34 @@
 
 ### Development Tooling
 
-- ASP.NET MVC App spun up using .net cli command
-- Entity Framework migrations managed by the .net cli
+> Arch Linux and the DotNet CLI
+
+- ASP.NET MVC
+- Entity Framework
+- LibMan
+
+### Setup
 
 ```
 # create empty ASP.NET app
 
 dotnet new web
+
+# install LibMan, and initialize LibMan in the project
+
+dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+
+libman init
+
+```
+
+```
+# install client libraries
+
+libman install jquery@3.4.1 --provider cdnjs --destination wwwroot/lib/jquery
+
+libman install twitter-bootstrap@3.3.7 --provider cdnjs --destination wwwroot/lib/bootstrap
+
 ```
 
 ```
@@ -29,9 +50,6 @@ dotnet ef database update
 
 ```
 
-requires
-
-- wwwroot/lib/bootstrap v3.3.7
-- wwwroot/lib/jquery v3.4.1
+Content delivery at its finest -> https://cdnjs.com/libraries
 
 ---
