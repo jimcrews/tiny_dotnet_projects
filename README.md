@@ -29,4 +29,9 @@ dotnet ef database update
 
 ```
 
+requires
+
+- wwwroot/lib/bootstrap v3.3.7
+- wwwroot/lib/jquery v3.4.1
+
 ---
