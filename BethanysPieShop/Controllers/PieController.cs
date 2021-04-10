@@ -6,6 +6,7 @@ using BethanysPieShop.Models;
 using BethanysPieShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BethanysPieShop.Controllers
 {
@@ -14,35 +15,44 @@ namespace BethanysPieShop.Controllers
         private readonly IPieRepository _pieRepository;
         private readonly ICategoryRepository _categoryRepository;
 
-        // these are going to be injected into the controller, because they are registered in the Startup.cs
         public PieController(IPieRepository pieRepository, ICategoryRepository categoryRepository)
         {
             _pieRepository = pieRepository;
             _categoryRepository = categoryRepository;
         }
 
-        // looks in Views/Pie for List.cshtml
-        public IActionResult List()
+        public ViewResult List(string category)
         {
-            //ViewBag.CurrentCategory = "Cheese cakes";
+            IEnumerable<Pie> pies;
+            string currentCategory;
 
-            //return View(_pieRepository.AllPies);
-            PiesListViewModel piesListViewModel = new PiesListViewModel();
-            piesListViewModel.Pies = _pieRepository.AllPies;
+            if (string.IsNullOrEmpty(category))
+            {
+                pies = _pieRepository.AllPies.OrderBy(p => p.PieId);
+                currentCategory = "All pies";
+            }
+            else
+            {
+                pies = _pieRepository.AllPies.Where(p => p.Category.CategoryName == category)
+                    .OrderBy(p => p.PieId);
+                currentCategory = _categoryRepository.AllCategories.FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
+            }
 
-            piesListViewModel.CurrentCategory = "Cheese cakes";
-            return View(piesListViewModel);
+            return View(new PiesListViewModel
+            {
+                Pies = pies,
+                CurrentCategory = currentCategory
+            });
         }
 
-        // looks in Views/Pie for Details.cshtml
+
         public IActionResult Details(int id)
         {
             var pie = _pieRepository.GetPieById(id);
-            if (pie == null) {
+            if (pie == null)
                 return NotFound();
-            } else {
-                return View(pie);
-            }
+
+            return View(pie);
         }
     }
 }
