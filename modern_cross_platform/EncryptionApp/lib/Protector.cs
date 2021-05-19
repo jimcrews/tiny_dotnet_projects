@@ -60,5 +60,56 @@ namespace lib
             }
             return Encoding.Unicode.GetString(plainBytes);
         }
+
+        private static Dictionary<string, User> Users = new Dictionary<string, User>();
+        public static User Register(string username, string password)
+        {
+            // generate a random salt
+            var rng = RandomNumberGenerator.Create();
+            var saltBytes = new byte[16];
+            rng.GetBytes(saltBytes);
+            var saltText = Convert.ToBase64String(saltBytes);
+            // generate the salted and hashed password 
+            var saltedhashedPassword = SaltAndHashPassword(
+              password, saltText);
+            var user = new User
+            {
+                Name = username,
+                Salt = saltText,
+                SaltedHashedPassword = saltedhashedPassword
+            };
+            Users.Add(user.Name, user);
+            return user;
+        }
+        public static bool CheckPassword(string username, string password)
+        {
+            if (!Users.ContainsKey(username))
+            {
+                return false;
+            }
+            var user = Users[username];
+            // re-generate the salted and hashed password 
+            var saltedhashedPassword = SaltAndHashPassword(
+              password, user.Salt);
+            return (saltedhashedPassword == user.SaltedHashedPassword);
+        }
+        private static string SaltAndHashPassword(string password, string salt)
+        {
+            var sha = SHA256.Create();
+            var saltedPassword = password + salt;
+            return Convert.ToBase64String(
+              sha.ComputeHash(Encoding.Unicode.GetBytes(saltedPassword)));
+        }
+
+
+        public static byte[] GetRandomKeyOrIV(int size)
+        {
+            var r = RandomNumberGenerator.Create();
+            var data = new byte[size];
+            r.GetNonZeroBytes(data);
+            // data is an array now filled with 
+            // cryptographically strong random bytes
+            return data;
+        }
     }
 }
