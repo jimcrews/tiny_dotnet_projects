@@ -5,14 +5,26 @@ namespace testsLib
 {
     public class Tests
     {
-        [Test]
-        public void IsValidFileName_BadExtension_ReturnsFalse()
+        [TestCase("filewithgoodextension.SLF", true)]
+        [TestCase("filewithgoodextension.slf", true)]
+        [TestCase("filewithbadextension.foo", false)]
+        public void IsValidFileName_VariousExtensions_ChecksThem(string file, bool expected)
         {
+            // arrange
             LogAnalyzer analyzer = new LogAnalyzer();
 
-            bool result = analyzer.IsValidLogFileName("filewithbadextension.foo");
+            // act
+            bool result = analyzer.IsValidLogFileName(file);
 
-            Assert.False(result);
+            // assert
+            Assert.AreEqual(expected, result);
         }
+
+        [Test]
+        public void alwaysPass()
+        {
+            Assert.IsTrue(1 == 1);
+        }
+
     }
 }
