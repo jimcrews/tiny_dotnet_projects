@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace testsLib
 {
-    public class Tests
+    public class LogAnalyzerTests
     {
         [TestCase("filewithgoodextension.SLF", true)]
         [TestCase("filewithgoodextension.slf", true)]
@@ -32,6 +32,17 @@ namespace testsLib
 
             // assert
             StringAssert.Contains("filename has to be provided", ex.Message);
+        }
+
+        [TestCase("badfile.foo", false)]
+        [TestCase("goodfile.slf", true)]
+        public void IsValidFileName_WhenCalled_ChangesWasLastFileNameValid(string file, bool expected)
+        {
+            LogAnalyzer la = new LogAnalyzer();
+
+            la.IsValidLogFileName(file);
+
+            Assert.AreEqual(expected, la.WasLastFileNameValid);
         }
 
     }

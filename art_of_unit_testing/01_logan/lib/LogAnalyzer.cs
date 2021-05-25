@@ -4,8 +4,13 @@ namespace lib
 {
     public class LogAnalyzer
     {
+        public bool WasLastFileNameValid { get; set; }
+
+
         public bool IsValidLogFileName(string fileName)
         {
+            WasLastFileNameValid = false;
+
             if (string.IsNullOrEmpty(fileName))
             {
                 throw new ArgumentException(
@@ -17,6 +22,7 @@ namespace lib
                 return false;
             }
 
+            WasLastFileNameValid = true;
             return true;
         }
     }

@@ -1,3 +1,11 @@
+Name your tests clearly using the following model: [UnitOfWork]_[Scenario] _[ExpectedBehavior].
+
+<br />
+
+---
+
+<br />
+
 1. Create the Solution
 
 ```
