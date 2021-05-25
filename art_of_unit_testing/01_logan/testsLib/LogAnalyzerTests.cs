@@ -1,3 +1,4 @@
+using System;
 using lib;
 using NUnit.Framework;
 
@@ -21,9 +22,16 @@ namespace testsLib
         }
 
         [Test]
-        public void alwaysPass()
+        public void IsValidFileName_EmptyFileName_Throws()
         {
-            Assert.IsTrue(1 == 1);
+            // arrange
+            LogAnalyzer analyzer = new LogAnalyzer();
+
+            // returns the instance of the exception object that was thrown inside the lambda
+            var ex = Assert.Catch<Exception>(() => analyzer.IsValidLogFileName(""));
+
+            // assert
+            StringAssert.Contains("filename has to be provided", ex.Message);
         }
 
     }
