@@ -5,16 +5,17 @@ using System.Collections.Generic;
 
 namespace FlyingDutchmanAirlines.DatabaseLayer.Models
 {
-    public partial class Customer
+    public sealed class Customer
     {
-        public Customer()
+        public Customer(string name)
         {
             Bookings = new HashSet<Booking>();
+            Name = name;
         }
 
         public int CustomerId { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Booking> Bookings { get; set; }
+        public ICollection<Booking> Bookings { get; set; }
     }
 }
