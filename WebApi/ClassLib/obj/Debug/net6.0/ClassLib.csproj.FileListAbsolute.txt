@@ -1,0 +1,12 @@
+/home/jimc/repos/WebApi/ClassLib/bin/Debug/net6.0/ClassLib.deps.json
+/home/jimc/repos/WebApi/ClassLib/bin/Debug/net6.0/ClassLib.dll
+/home/jimc/repos/WebApi/ClassLib/bin/Debug/net6.0/ref/ClassLib.dll
+/home/jimc/repos/WebApi/ClassLib/bin/Debug/net6.0/ClassLib.pdb
+/home/jimc/repos/WebApi/ClassLib/obj/Debug/net6.0/ClassLib.csproj.AssemblyReference.cache
+/home/jimc/repos/WebApi/ClassLib/obj/Debug/net6.0/ClassLib.GeneratedMSBuildEditorConfig.editorconfig
+/home/jimc/repos/WebApi/ClassLib/obj/Debug/net6.0/ClassLib.AssemblyInfoInputs.cache
+/home/jimc/repos/WebApi/ClassLib/obj/Debug/net6.0/ClassLib.AssemblyInfo.cs
+/home/jimc/repos/WebApi/ClassLib/obj/Debug/net6.0/ClassLib.csproj.CoreCompileInputs.cache
+/home/jimc/repos/WebApi/ClassLib/obj/Debug/net6.0/ClassLib.dll
+/home/jimc/repos/WebApi/ClassLib/obj/Debug/net6.0/ref/ClassLib.dll
+/home/jimc/repos/WebApi/ClassLib/obj/Debug/net6.0/ClassLib.pdb
