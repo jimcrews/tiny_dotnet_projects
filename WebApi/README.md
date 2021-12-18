@@ -1,3 +1,13 @@
+requires ConnectionStrings to be added to App/secrets.json
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultDB": "Server=tcp:{servername},1433;Initial Catalog={database};Persist Security Info=False;User ID={username};Password={password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+  }
+}
+```
+
 ## Run locally
 
 ### Dotnet Run
